@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Item = require('../models/item');
 
 // Middleware used to protect routes that need a logged in user
 const ensureLoggedIn = require('../middleware/ensure-logged-in');
@@ -7,19 +8,19 @@ const ensureLoggedIn = require('../middleware/ensure-logged-in');
 // This is how we can more easily protect ALL routes for this router
 // router.use(ensureLoggedIn);
 
-// ALL paths start with '/unicorns'
+// ALL paths start with '/items'
 
 // index action
-// GET /unicorns
-// Example of a non-protected route
-router.get('/', (req, res) => {
-  res.send('List of all unicorns - not protected');
+// GET /items
+router.get('/', ensureLoggedIn, async (req, res) => {
+  const items = await Item.find({});
+  res.render('items/index.ejs', { items, title: 'All Items:'});
 });
 
-// GET /unicorns/new
+// GET /items/new
 // Example of a protected route
 router.get('/new', ensureLoggedIn, (req, res) => {
-  res.send('Create a unicorn!');
+  res.send('Create an item!');
 });
 
 module.exports = router;
