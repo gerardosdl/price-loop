@@ -6,18 +6,18 @@ const itemSchema = new Schema({
     type: String,
     required: true,
   },
-  prices: {
-    type: [priceSchema],
-    required: true,
-  },
+  // prices: {
+  //   type: [priceSchema],
+  //   required: true,
+  // },
   user: {
-    type: ObjectId,
-    ref: user,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
   },
   trackedBy: {
-    type:[ObjectId],
-    ref: user,
+    type:[Schema.Types.ObjectId],
+    ref: 'User',
     required: true,
   },
   location:{

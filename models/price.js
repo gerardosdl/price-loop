@@ -11,6 +11,10 @@ const itemSchema = new Schema({
     ref: user,
     required: true,
   },
+  store: {
+    type: String,
+    required: true,
+  }, 
   note: {
     type: String,
     required: true,
