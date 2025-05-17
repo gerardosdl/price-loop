@@ -1,15 +1,40 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const priceSchema = new Schema({
+  price: {
+    type: Number,
+    required: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  store: {
+    type: String,
+    required: true,
+  }, 
+  note: {
+    type: String,
+    required: true,
+  },
+  
+}, {
+  timestamps: true
+});
+
+
+
 const itemSchema = new Schema({
   category: {
     type: String,
     required: true,
   },
-  // prices: {
-  //   type: [priceSchema],
-  //   required: true,
-  // },
+  prices: {
+    type: [priceSchema],
+    required: true,
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
