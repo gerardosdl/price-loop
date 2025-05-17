@@ -1,0 +1,13 @@
+<%- include('../partials/header.ejs') %>
+
+<h1>Item Details </h1>
+<p><strong><%= item.name %></p></strong>
+<p>Description: <%= item.description %></p>
+<p>Added by: <%= user.name %></p>
+<p>Added on: <%= item.createdAt.toLocaleDateString() %></p>
+
+<p>Category: <%= item.category %></p>
+<p>Location: <%= item.location %></p>
+<p>Prices: <%= item.prices %></p>
+<!-- TODO: fix prices -->
+<%- include('../partials/footer.ejs') %>

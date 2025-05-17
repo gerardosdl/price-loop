@@ -14,7 +14,7 @@ const ensureLoggedIn = require('../middleware/ensure-logged-in');
 // GET /items
 router.get('/', ensureLoggedIn, async (req, res) => {
   const items = await Item.find({}).sort('-createdAt');
-  res.render('items/index.ejs', { items, title: 'All Items:'});
+  res.render('items/index.ejs', { items });
 });
 
 // GET /items/new
@@ -23,7 +23,7 @@ router.get('/new', ensureLoggedIn, (req, res) => {
   res.render('items/new.ejs');
 });
 
-router.post('/', async (req, res) => {
+router.post('/', ensureLoggedIn, async (req, res) => {
   try {
     req.body.user = req.user._id;
     await Item.create(req.body);
@@ -31,8 +31,14 @@ router.post('/', async (req, res) => {
   }catch (err) {
     console.log(err);
     res.redirect('/items/new')
-
+// TODO check for missing references
   }
 });
+
+router.get('/:id', ensureLoggedIn, async (req, res) => {
+  const item = await Item.findById(req.params.id).populate('user');
+  res.render('items/show.ejs', { item })
+})
+
 
 module.exports = router;
