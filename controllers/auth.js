@@ -20,7 +20,7 @@ router.post('/sign-up', async (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, SALT_ROUNDS);
     const user = await User.create(req.body);
     req.session.userId = user._id;
-    res.redirect('/')
+    res.redirect('/items');
   } catch (err) {
     // This code will execute if an error happens
     // in the try block above
@@ -43,8 +43,7 @@ router.post('/sign-in', async (req, res) => {
     const isValidPassword = bcrypt.compareSync(req.body.password, user.password);
     if (!isValidPassword) throw new Error();
     req.session.userId = user._id;
-    // TODO: Redirect to what you want in your app
-    res.redirect('/');
+    res.redirect('/items');
   } catch {
     res.render('auth/sign-in.ejs', { error: 'Invalid Credentials' });
   }
