@@ -23,4 +23,15 @@ router.get('/new', ensureLoggedIn, (req, res) => {
   res.render('items/new.ejs');
 });
 
+router.post('/', async (req, res) => {
+  try {
+    await Items.create(req.body);
+    res/redirect('/items');
+  }catch (err) {
+    console.log(err);
+    res.redirect('/items/new')
+
+  }
+});
+
 module.exports = router;

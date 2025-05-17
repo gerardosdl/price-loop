@@ -4,9 +4,20 @@
 
 <form action="">
   <label for="category">Category</label>
-  <input type="text" id="category" name="category">
+  <input type="text" id="category" name="category" required>
+
   <label for="location">Location</label>
-  <input type="text" id="location" name="location">
+  <input type="text" id="location" name="location" required>
+
+  <label for="price">Price</label>
+  <input type="number" id="price" name="price" required>
+
+  <label for="store">Store</label>
+  <input type="text" id="store" name="store" required>
+
+  <label for="note">Note</label>
+  <textarea id="note" name="note" required></textarea>
+
   <button type="submit">Add Item ➡️</button>
 </form>
 
