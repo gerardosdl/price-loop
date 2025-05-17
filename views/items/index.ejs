@@ -7,6 +7,7 @@
     <% items.forEach((item) => { %>
       <li>
         <a href="/items/<%= item._id %> ">
+          <%= item.name %>
         </a>
       </li>
     <% }) %>
