@@ -10,4 +10,9 @@
 <p>Location: <%= item.location %></p>
 <p>Prices: <%= item.prices %></p>
 <!-- TODO: fix prices -->
+
+<form action="/items/<%=item._id %>?_method=DELETE" method="POST">
+  <button type="submit">🗑️</button>
+</form>
+
 <%- include('../partials/footer.ejs') %>

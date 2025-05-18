@@ -38,7 +38,20 @@ router.post('/', ensureLoggedIn, async (req, res) => {
 router.get('/:id', ensureLoggedIn, async (req, res) => {
   const item = await Item.findById(req.params.id).populate('user');
   res.render('items/show.ejs', { item })
-})
+});
 
+router.delete('/:id', ensureLoggedIn, async (req, res) => {
+  try {
+    const item = await Item.findById(req.params.id);
+    if (item.user.equals(req.user._id)) {
+      await item.deleteOne();
+      res.redirect('/items');
+    } else {
+      res.send("You are not permitted to delete this item");
+    }
+  } catch (err) {
+    console.log(err);
+  } res.redirect('/');
+});
 
 module.exports = router;

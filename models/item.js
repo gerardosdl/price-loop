@@ -51,7 +51,7 @@ const itemSchema = new Schema({
   trackedBy: {
     type:[Schema.Types.ObjectId],
     ref: 'User',
-    required: true,
+    required: false,
   },
   location:{
     type: String,
