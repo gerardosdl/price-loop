@@ -51,7 +51,39 @@ router.delete('/:id', ensureLoggedIn, async (req, res) => {
     }
   } catch (err) {
     console.log(err);
-  } res.redirect('/');
+    res.redirect('/');
+  } 
+});
+
+router.get('/:id/edit', ensureLoggedIn, async (req, res) => {
+  try {
+    const currentItem = await Item.findById(req.params.id);
+    res.render('items/edit.ejs', {
+      item: currentItem,
+    }); 
+  } catch (err) {
+    console.log(err);
+    res.redirect('/');
+  }
+});
+
+router.get('/:id', ensureLoggedIn, async (req, res) => {
+
+});
+
+router.put('/:id', ensureLoggedIn, async (req, res) => {
+  try {
+    const currentItem = await Item.findById(req.params.id);
+    if (currentItem.user.equals(req.user._id)) {
+      await currentItem.updateOne(req.body);
+      res.redirect('/items');
+    } else {
+      res.send("Denied");
+      }
+    } catch (err) {
+      console.log(err);
+      res.redirect('/');
+  }
 });
 
 module.exports = router;

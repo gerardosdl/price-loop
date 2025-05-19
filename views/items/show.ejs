@@ -1,7 +1,7 @@
 <%- include('../partials/header.ejs') %>
 
 <h1>Item Details </h1>
-<p><strong><%= item.name %></p></strong>
+<p><strong><%= item.name %></strong></p>
 <p>Description: <%= item.description %></p>
 <p>Added by: <%= user.name %></p>
 <p>Added on: <%= item.createdAt.toLocaleDateString() %></p>
@@ -11,8 +11,11 @@
 <p>Prices: <%= item.prices %></p>
 <!-- TODO: fix prices -->
 
-<form action="/items/<%=item._id %>?_method=DELETE" method="POST">
-  <button type="submit">🗑️</button>
-</form>
+<% if (item.user._id.equals(user._id)) { %>
+  <a href="/items/<%= item._id %>/edit">Edit item</a>
+  <form action="/items/<%=item._id %>?_method=DELETE" method="POST">
+    <button type="submit">🗑️</button>
+  </form>
+<% } %>
 
 <%- include('../partials/footer.ejs') %>
