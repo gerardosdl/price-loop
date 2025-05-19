@@ -56,6 +56,7 @@ app.get('/', (req, res) => {
 app.use('/auth', require('./controllers/auth'));
 
 app.use('/items', require('./controllers/items'));
+app.use('/', require('./controllers/prices'));
 
 
 app.listen(port, () => {

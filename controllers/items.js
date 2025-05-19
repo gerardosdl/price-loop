@@ -36,7 +36,9 @@ router.post('/', ensureLoggedIn, async (req, res) => {
 });
 
 router.get('/:id', ensureLoggedIn, async (req, res) => {
-  const item = await Item.findById(req.params.id).populate('user');
+  const item = await Item.findById(req.params.id)
+  .populate('user')
+  .populate('prices.user')
   res.render('items/show.ejs', { item })
 });
 
