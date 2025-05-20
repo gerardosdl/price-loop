@@ -33,13 +33,19 @@
       <% item.prices.forEach((price) =>{ %>
         <li>Price: $<%= price.price %>
         <br>
-        Store: $<%= price.store %>
+        Store: <%= price.store %>
         <br>
-        Note: <%= price.note %>
+        Note: <%- price.note.replaceAll('\n', '<br>') %>
         <br>
         Added by: <%= price.user.name %>
         <br>
         Added on: <%= price.createdAt.toLocaleDateString() %>
+        <br>
+        <% if (price.user._id.equals(user._id)) { %>
+          <form action="/prices/<%= price._id %>?_method=DELETE" method="POST">
+            <button type="submit">🗑️</button>
+          </form>
+        <% } %>
         </li>
       <% }) %>
     </ul>
