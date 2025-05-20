@@ -30,7 +30,6 @@ router.delete('/prices/:id', async (req, res) => {
   item.prices = item.prices.filter(price => price._id.toString() !== req.params.id);
   await item.save();
   res.redirect(`/items/${item._id}`); 
-
 });
 
 module.exports = router;

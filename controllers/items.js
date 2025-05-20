@@ -39,7 +39,8 @@ router.get('/:id', ensureLoggedIn, async (req, res) => {
   const item = await Item.findById(req.params.id)
   .populate('user')
   .populate('prices.user')
-  res.render('items/show.ejs', { item })
+  const isTracked = item.trackedBy.some((id) => id.equals(req.user._id));
+  res.render('items/show.ejs', { item, isTracked })
 });
 
 router.delete('/:id', ensureLoggedIn, async (req, res) => {

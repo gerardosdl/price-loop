@@ -57,6 +57,7 @@ app.use('/auth', require('./controllers/auth'));
 
 app.use('/items', require('./controllers/items'));
 app.use('/', require('./controllers/prices'));
+app.use('/', require('./controllers/trackings'));
 
 
 app.listen(port, () => {

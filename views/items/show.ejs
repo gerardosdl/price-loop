@@ -10,7 +10,17 @@
 
     <p>Category: <%= item.category %></p>
     <p>Location: <%= item.location %></p>
-    
+    <p>
+      <% if (isTracked) { %>
+        <form action="/items/<%= item._id %>/trackings?_method=DELETE" method="POST">
+          <button type="submit">★</button>
+        </form>
+        <% } else if (user) { %>
+          <form action="/items/<%= item._id %>/trackings" method="POST">
+            <button type="submit">☆</button>
+          </form>
+      <% } %>
+    </p>
     <% if (item.user._id.equals(user._id)) { %>
       <p><a href="/items/<%= item._id %>/edit">Edit item</a></p>
       <form action="/items/<%=item._id %>?_method=DELETE" method="POST">
