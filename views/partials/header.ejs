@@ -12,6 +12,7 @@
     <div>
       <a href="/items">ALL ITEMS</a>
       <% if (user) { %>
+        <a href="/trackings">MY TRACKED ITEMS</a>
         <a href="/items/new">ADD ITEM</a>
         <a href="/auth/sign-out">SIGN OUT</a>
         <span><%= user.name %></span>

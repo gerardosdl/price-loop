@@ -81,7 +81,7 @@ button:hover {
 
 #show-pg {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
   gap: 4rem;
 }
 

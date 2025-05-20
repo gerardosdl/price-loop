@@ -14,7 +14,7 @@ const ensureLoggedIn = require('../middleware/ensure-logged-in');
 // GET /items
 router.get('/', ensureLoggedIn, async (req, res) => {
   const items = await Item.find({}).sort('-createdAt');
-  res.render('items/index.ejs', { items });
+  res.render('items/index.ejs', { items, title: 'All Items' });
 });
 
 // GET /items/new
@@ -39,6 +39,7 @@ router.get('/:id', ensureLoggedIn, async (req, res) => {
   const item = await Item.findById(req.params.id)
   .populate('user')
   .populate('prices.user')
+  .populate('trackedBy');
   const isTracked = item.trackedBy.some((id) => id.equals(req.user._id));
   res.render('items/show.ejs', { item, isTracked })
 });

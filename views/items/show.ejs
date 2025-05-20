@@ -10,24 +10,40 @@
 
     <p>Category: <%= item.category %></p>
     <p>Location: <%= item.location %></p>
-    <p>
-      <% if (isTracked) { %>
-        <form action="/items/<%= item._id %>/trackings?_method=DELETE" method="POST">
-          <button type="submit">★</button>
-        </form>
-        <% } else if (user) { %>
-          <form action="/items/<%= item._id %>/trackings" method="POST">
-            <button type="submit">☆</button>
-          </form>
-      <% } %>
-    </p>
     <% if (item.user._id.equals(user._id)) { %>
       <p><a href="/items/<%= item._id %>/edit">Edit item</a></p>
       <form action="/items/<%=item._id %>?_method=DELETE" method="POST">
         <button type="submit">🗑️</button>
       </form>
-    <% } %>
+      <% } %>
+    </article>
+   
+    <article>
+      <p><strong>Tracked By: </strong></p>
+      <p>
+        <% if (isTracked) { %>
+          <form action="/items/<%= item._id %>/trackings?_method=DELETE" method="POST">
+            <button type="submit">★</button>
+          </form>
+          <% } else if (user) { %>
+            <form action="/items/<%= item._id %>/trackings" method="POST">
+              <button type="submit">☆</button>
+            </form>
+            <% } %>
+      </p>
+    <p>
+      <% if (item.trackedBy.length) { %>
+        <ul>
+          <% item.trackedBy.forEach((user) => { %>
+            <li><%= user.name %></li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>This item is not tracked yet</p>
+      <% } %>
+    </p>
   </article>
+  
   <article>  
   <p><strong>Prices</strong></p>
     <form action="/items/<%= item._id %>/prices" method="POST">
@@ -59,7 +75,6 @@
         </li>
       <% }) %>
     </ul>
-    <!-- TODO: fix prices -->
   </article>
 </section>
 <%- include('../partials/footer.ejs') %>

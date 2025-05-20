@@ -12,10 +12,10 @@ router.use(ensureLoggedIn);
 
 // index action
 // GET /items
-// router.get('/', ensureLoggedIn, async (req, res) => {
-//   const items = await Item.find({}).sort('-createdAt');
-//   res.render('items/index.ejs', { items });
-// });
+router.get('/trackings', async (req, res) => {
+  const items = await Item.find({ trackedBy: req.user._id }).sort('-createdAt');
+  res.render('items/index.ejs', { items, title: 'My Tracked Items'  });
+});
 
 // GET /items/new
 // Example of a protected route
