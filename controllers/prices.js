@@ -26,18 +26,11 @@ router.post('/items/:id/prices', async (req, res) => {
 });
 
 router.delete('/prices/:id', async (req, res) => {
-  try {
-    const item = await Item.findById(req.params.id);
-    if (price.user.equals(req.user._id)) {
-      await price.deleteOne();
-      res.redirect(`/items/${req.params.id}`);
-    } else {
-      res.send("You are not permitted to delete this price");
-    }
-  } catch (err) {
-    console.log(err);
-    res.redirect(`/items/${req.params.id}`);
-  } 
+  const item = await Item.findOne({ 'prices._id' : req.params.id });
+  item.prices = item.prices.filter(price => price._id.toString() !== req.params.id);
+  await item.save();
+  res.redirect(`/items/${item._id}`); 
+
 });
 
 module.exports = router;
