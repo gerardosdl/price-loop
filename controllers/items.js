@@ -12,11 +12,20 @@ const ensureLoggedIn = require('../middleware/ensure-logged-in');
 
 // index action
 // GET /items
-router.get('/', ensureLoggedIn, async (req, res) => {
-  const items = await Item.find({}).sort('-createdAt');
-  res.render('items/index.ejs', { items, title: 'All Items' });
-});
 
+// router.get('/', ensureLoggedIn, async (req, res) => {
+//   const items = await Item.find({}).sort('-createdAt');
+//   res.render('items/index.ejs', { items, title: 'All Items' });
+// });
+
+router.get('/', ensureLoggedIn, async (req, res) => {
+  const category = req.query.category || '';
+  const query = category ? { category } : {};
+  const sort = req.query.sort || 'name';
+  const items = await Item.find(query).sort(sort);
+  const categories = await Item.distinct('category');
+  res.render('items/index.ejs', { items, category, sort, title: 'All Items', categories });
+});
 // GET /items/new
 // Example of a protected route
 router.get('/new', ensureLoggedIn, (req, res) => {
