@@ -25,9 +25,15 @@
     <table class="table table-striped" style="width: 100%">
       <thead>
         <tr>
-          <th><a href="/items?sort=name&category=<%= category %>">⬇</a> Name <a href="/items?sort=-name&category=<%= category %>">⬆</a></th>
-          <th><a href="/items?sort=category&category=<%= category %>">⬇</a> Category <a href="/items?sort=-category&category=<%= category %>">⬆</a></th>
-          <th><a href="/items?sort=location&category=<%= category %>">⬇</a> Location <a href="/items?sort=-location&category=<%= category %>">⬆</a></th>
+          <% if (title === "All Items") { %> 
+            <th><a href="/items?sort=name&category=<%= category %>">⬇</a> Name <a href="/items?sort=-name&category=<%= category %>">⬆</a></th>
+            <th><a href="/items?sort=category&category=<%= category %>">⬇</a> Category <a href="/items?sort=-category&category=<%= category %>">⬆</a></th>
+            <th><a href="/items?sort=location&category=<%= category %>">⬇</a> Location <a href="/items?sort=-location&category=<%= category %>">⬆</a></th>
+          <% } else { %>
+            <th><a href="/trackings?sort=name&category=<%= category %>">⬇</a> Name <a href="/trackings?sort=-name&category=<%= category %>">⬆</a></th>
+            <th><a href="/trackings?sort=category&category=<%= category %>">⬇</a> Category <a href="/trackings?sort=-category&category=<%= category %>">⬆</a></th>
+            <th><a href="/trackings?sort=location&category=<%= category %>">⬇</a> Location <a href="/trackings?sort=-location&category=<%= category %>">⬆</a></th>
+          <% } %>
         </tr>
       </thead>
       <% items.forEach(function(item) { %>
