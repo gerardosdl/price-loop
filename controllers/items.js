@@ -18,7 +18,7 @@ const ensureLoggedIn = require('../middleware/ensure-logged-in');
 //   res.render('items/index.ejs', { items, title: 'All Items' });
 // });
 
-router.get('/', ensureLoggedIn, async (req, res) => {
+router.get('/', async (req, res) => {
   const category = req.query.category || '';
   const query = category ? { category } : {};
   const sort = req.query.sort || 'name';
