@@ -11,7 +11,11 @@
       <li class="list-group-item <%= category==='' ? 'active' : '' %>"><a href="/items">All</a></li>
 
       <% categories.forEach(function(cat) { %>
-        <li class="list-group-item <%= category === cat ? 'active' : '' %>"><a href="/items?category= cat">cat</a></li>
+         <li class="list-group-item <%= category === cat ? 'active' : '' %>">
+      <a href="/items?category=<%= encodeURIComponent(cat) %>">
+        <%= cat %>
+      </a>
+    </li>
       <% }) %>
     </ul>
   </div>
@@ -29,7 +33,7 @@
       </thead>
       <% items.forEach(function(item) { %>
         <tr>
-          <td><%= item.name %></td>
+          <td><a href="/items/<%= item._id %>"><%= item.name %></a></td>
           <td><%= item.category %></td>
           <td><%= item.location %></td>
         </tr>
