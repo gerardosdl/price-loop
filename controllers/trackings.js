@@ -12,10 +12,23 @@ router.use(ensureLoggedIn);
 
 // index action
 // GET /items
+// router.get('/trackings', async (req, res) => {
+//   const items = await Item.find({ trackedBy: req.user._id }).sort('-createdAt');
+//   res.render('items/index.ejs', { items, title: 'My Tracked Items'  });
+// });
+
 router.get('/trackings', async (req, res) => {
-  const items = await Item.find({ trackedBy: req.user._id }).sort('-createdAt');
-  res.render('items/index.ejs', { items, title: 'My Tracked Items'  });
+  const category = req.query.category || '';
+  const query = { trackedBy: req.user._id };
+  if (category) query.category = category;
+  const sort = req.query.sort || 'name';
+  const items = await Item.find(query).sort(sort);
+  const categories = await Item.distinct('category', { trackedBy: req.user._id });
+  res.render('items/index.ejs', { items, category, sort, title: 'My Tracked Items', categories });
 });
+
+
+
 
 // GET /items/new
 // Example of a protected route
