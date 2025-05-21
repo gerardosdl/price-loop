@@ -3,22 +3,37 @@
 <div class="container row text-center" style="margin: auto">
 
   <div class="col-sm-1"></div>
-  
+  <% if (title === "All Items") { %>
   <div class="col-sm-3">
     <h5 class="text-center">Category Filter</h5>
     <ul class="list-group">
-      <li class="list-group-item <%= category==='' ? 'active' : '' %>"><a href="/items">All</a></li>
+      <li class="list-group-item <%= category==='' ? 'active' : '' %>">
+        <a href="/items">All</a>
+      </li>
 
       <% categories.forEach(function(cat) { %>
-         <li class="list-group-item <%= category === cat ? 'active' : '' %>">
-      <a href="/items?category=<%= encodeURIComponent(cat) %>">
-        <%= cat %>
-      </a>
-    </li>
+        <li class="list-group-item <%= category === cat ? 'active' : '' %>">
+          <a href="/items?category=<%= encodeURIComponent(cat) %>"><%= cat %></a>
+        </li>
       <% }) %>
     </ul>
   </div>
+  <% } else { %>
+  <div class="col-sm-3">
+    <h5 class="text-center">Category Filter</h5>
+    <ul class="list-group">
+      <li class="list-group-item <%= category==='' ? 'active' : '' %>">
+        <a href="/trackings">All</a>
+      </li>
 
+      <% categories.forEach(function(cat) { %>
+        <li class="list-group-item <%= category === cat ? 'active' : '' %>">
+          <a href="/trackings?category=<%= encodeURIComponent(cat) %>"><%= cat %></a>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+  <% } %>
   <div class="col-sm-1"></div>
   
   <div class="col-sm-6">
@@ -36,12 +51,12 @@
           <% } %>
         </tr>
       </thead>
-      <% items.forEach(function(item) { %>
-        <tr>
-          <td><a href="/items/<%= item._id %>"><%= item.name %></a></td>
-          <td><%= item.category %></td>
-          <td><%= item.location %></td>
-        </tr>
+        <% items.forEach(function(item) { %>
+          <tr>
+            <td><a href="/items/<%= item._id %>"><%= item.name %></a></td>
+            <td><%= item.category %></td>
+            <td><%= item.location %></td>
+          </tr>
         <% }) %>
       </table>
     </div>
