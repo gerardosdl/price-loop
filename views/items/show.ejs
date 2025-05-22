@@ -11,27 +11,24 @@
     <p>Category: <%= item.category %></p>
     <p>Location: <%= item.location %></p>
     <% if (item.user._id.equals(user._id)) { %>
-      <p><a href="/items/<%= item._id %>/edit">Edit item</a></p>
-      <form action="/items/<%=item._id %>?_method=DELETE" method="POST">
-        <button type="submit">🗑️</button>
+      <a href="/items/<%= item._id %>/edit">Edit item</a>
+       <form action="/items/<%=item._id %>?_method=DELETE" method="POST">
+         <button type="submit">🗑️</button>
       </form>
       <% } %>
     </article>
    
     <article>
       <p><strong>Tracked By: </strong></p>
-      <p>
         <% if (isTracked) { %>
-          <form action="/items/<%= item._id %>/trackings?_method=DELETE" method="POST">
-            <button type="submit">★</button>
+           <form action="/items/<%= item._id %>/trackings?_method=DELETE" method="POST">
+             <button type="submit">★</button>
           </form>
           <% } else if (user) { %>
-            <form action="/items/<%= item._id %>/trackings" method="POST">
-              <button type="submit">☆</button>
+             <form action="/items/<%= item._id %>/trackings" method="POST">
+               <button type="submit">☆</button>
             </form>
             <% } %>
-      </p>
-    <p>
       <% if (item.trackedBy.length) { %>
         <ul>
           <% item.trackedBy.forEach((user) => { %>
@@ -41,14 +38,13 @@
       <% } else { %>
         <p>This item is not tracked yet</p>
       <% } %>
-    </p>
   </article>
   
   <article>  
   <p><strong>Prices</strong></p>
     <form action="/items/<%= item._id %>/prices" method="POST">
       <label for="price">Price</label>
-      <input type="number" id="price" name="price" placeholder="0.00" step="0.01" min="0" max= "10000000" required>
+    <input type="number" id="price" name="price" placeholder="0.00" step="0.01" min="0" max= "10000000" required>
       <label for="store">Store</label>
       <input type="text" id="store" name="store" required>
       <label for="note">Note</label>
@@ -57,21 +53,17 @@
     </form>
     <ul>
       <% item.prices.forEach((price) =>{ %>
-        <li>Price: $<%= price.price %>
-        <br>
-        Store: <%= price.store %>
-        <br>
-        Note: <br> <%- price.note.replaceAll('\n', '<br>') %>
-        <br>
-        Added by: <%= price.user.name %>
-        <br>
-        Added on: <%= price.createdAt.toLocaleDateString() %>
-        <br>
-        <% if (price.user._id.equals(user._id)) { %>
-          <form action="/prices/<%= price._id %>?_method=DELETE" method="POST">
-            <button type="submit">🗑️</button>
-          </form>
-        <% } %>
+        <li>
+          <p>Price: $<%= price.price %></p>
+          <p>Store: <%= price.store %></p>
+          <p>Note: <br> <%- price.note.replaceAll('\n', '<br>') %></p>
+          <p>Added by: <%= price.user.name %></p>
+          <p>Added on: <%= price.createdAt.toLocaleDateString() %></p>
+          <% if (price.user._id.equals(user._id)) { %>
+            <form action="/prices/<%= price._id %>?_method=DELETE" method="POST">
+              <button type="submit">🗑️</button>
+            </form>
+          <% } %>
         </li>
       <% }) %>
     </ul>
