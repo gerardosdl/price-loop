@@ -1,69 +1,69 @@
 <%- include('../partials/header.ejs') %>
-<h1 class="text-center m-5"><%= title %> (<%= category ? category : 'All Categories' %>)</h1>
-<div class="container row text-center" style="margin: auto">
-
-  <div class="col-sm-1"></div>
-  <% if (title === "All Items") { %>
-  <div class="col-sm-3">
-    <h5 class="text-center">Category Filter</h5>
-    <ul class="list-group">
-      <li class="list-group-item <%= category==='' ? 'active' : '' %>">
-        <a href="/items">All</a>
-      </li>
-
-      <% categories.forEach(function(cat) { %>
-        <li class="list-group-item <%= category === cat ? 'active' : '' %>">
-          <a href="/items?category=<%= encodeURIComponent(cat) %>"><%= cat %></a>
-        </li>
-      <% }) %>
-    </ul>
-  </div>
-  <% } else { %>
-  <div class="col-sm-3">
-    <h5 class="text-center">Category Filter</h5>
-    <ul class="list-group">
-      <li class="list-group-item <%= category==='' ? 'active' : '' %>">
-        <a href="/trackings">All</a>
-      </li>
-
-      <% categories.forEach(function(cat) { %>
-        <li class="list-group-item <%= category === cat ? 'active' : '' %>">
-          <a href="/trackings?category=<%= encodeURIComponent(cat) %>"><%= cat %></a>
-        </li>
-      <% }) %>
-    </ul>
-  </div>
-  <% } %>
-  <div class="col-sm-1"></div>
-  
-  <div class="col-sm-6">
-    <table class="table table-striped" style="width: 100%">
-      <thead>
-        <tr>
-          <% if (title === "All Items") { %> 
-            <th><a href="/items?sort=name&category=<%= category %>">⬇</a> Name <a href="/items?sort=-name&category=<%= category %>">⬆</a></th>
-            <th><a href="/items?sort=category&category=<%= category %>">⬇</a> Category <a href="/items?sort=-category&category=<%= category %>">⬆</a></th>
-            <th><a href="/items?sort=location&category=<%= category %>">⬇</a> Location <a href="/items?sort=-location&category=<%= category %>">⬆</a></th>
+<div class="index">
+  <h1 class="text-center m-5"><%= title %> (<%= category ? category : 'All Categories' %>)</h1>
+    <div class="container row text-center" style="margin: auto">
+      
+      <div class="col-sm-1"></div>
+      <% if (title === "All Items") { %>
+        <div class="col-sm-3">
+          <h5 class="text-center">Category Filter</h5>
+          <ul class="list-group">
+            <li class="list-group-item <%= category==='' ? 'active' : '' %>">
+              <a href="/items">All</a>
+            </li>
+            
+            <% categories.forEach(function(cat) { %>
+              <li class="list-group-item <%= category === cat ? 'active' : '' %>">
+                <a href="/items?category=<%= encodeURIComponent(cat) %>"><%= cat %></a>
+              </li>
+              <% }) %>
+            </ul>
+          </div>
           <% } else { %>
-            <th><a href="/trackings?sort=name&category=<%= category %>">⬇</a> Name <a href="/trackings?sort=-name&category=<%= category %>">⬆</a></th>
-            <th><a href="/trackings?sort=category&category=<%= category %>">⬇</a> Category <a href="/trackings?sort=-category&category=<%= category %>">⬆</a></th>
-            <th><a href="/trackings?sort=location&category=<%= category %>">⬇</a> Location <a href="/trackings?sort=-location&category=<%= category %>">⬆</a></th>
-          <% } %>
-        </tr>
-      </thead>
-        <% items.forEach(function(item) { %>
-          <tr>
-            <td><a href="/items/<%= item._id %>"><%= item.name %></a></td>
-            <td><%= item.category %></td>
-            <td><%= item.location %></td>
-          </tr>
-        <% }) %>
-      </table>
-    </div>
-
-    <div class="col-sm-1"></div>
-  </div>
-
-
-
-<%- include('../partials/footer.ejs') %>
+            <div class="col-sm-3">
+              <h5 class="text-center">Category Filter</h5>
+              <ul class="list-group">
+                <li class="list-group-item <%= category==='' ? 'active' : '' %>">
+                  <a href="/trackings">All</a>
+                </li>
+                
+                <% categories.forEach(function(cat) { %>
+                  <li class="list-group-item <%= category === cat ? 'active' : '' %>">
+                    <a href="/trackings?category=<%= encodeURIComponent(cat) %>"><%= cat %></a>
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+              <% } %>
+              <div class="col-sm-1"></div>
+              
+              <div class="col-sm-6">
+                <table class="table table-striped" style="width: 100%">
+                  <thead>
+                    <tr>
+                      <% if (title === "All Items") { %> 
+                        <th><a href="/items?sort=name&category=<%= category %>">⬇</a> Name <a href="/items?sort=-name&category=<%= category %>">⬆</a></th>
+                        <th><a href="/items?sort=category&category=<%= category %>">⬇</a> Category <a href="/items?sort=-category&category=<%= category %>">⬆</a></th>
+                        <th><a href="/items?sort=location&category=<%= category %>">⬇</a> Location <a href="/items?sort=-location&category=<%= category %>">⬆</a></th>
+                        <% } else { %>
+                          <th><a href="/trackings?sort=name&category=<%= category %>">⬇</a> Name <a href="/trackings?sort=-name&category=<%= category %>">⬆</a></th>
+                          <th><a href="/trackings?sort=category&category=<%= category %>">⬇</a> Category <a href="/trackings?sort=-category&category=<%= category %>">⬆</a></th>
+                          <th><a href="/trackings?sort=location&category=<%= category %>">⬇</a> Location <a href="/trackings?sort=-location&category=<%= category %>">⬆</a></th>
+                          <% } %>
+                        </tr>
+                      </thead>
+                      <% items.forEach(function(item) { %>
+                        <tr>
+                          <td><a href="/items/<%= item._id %>"><%= item.name %></a></td>
+                          <td><%= item.category %></td>
+                          <td><%= item.location %></td>
+                        </tr>
+                        <% }) %>
+                      </table>
+                    </div>
+                    
+                    <div class="col-sm-1"></div>
+                  </div>
+              </div>
+             
+                <%- include('../partials/footer.ejs') %>

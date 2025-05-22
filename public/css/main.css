@@ -11,6 +11,13 @@
   margin: 2rem auto;
 }
 
+@media(max-width: 768px){
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 body {
   margin: 0;
   height: 100vh;
@@ -128,6 +135,25 @@ th {
   white-space: nowrap;
 }
 
-h1, h2, img {
-  margin-bottom: 3rem;
+h1, h2, .home-page {
+  text-align: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.home-page {
+  width: 100%;
+  margin-top: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 50px rgba(0,0,0,0.8)
+}
+
+.home-description {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.index {
+  width: 100%;
+  overflow-x: auto;
 }
