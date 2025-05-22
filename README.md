@@ -60,5 +60,6 @@ Price Loop is a web app that lets users add items and track prices across stores
 
 - [HTML `<input type="number">` Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/number)
 - [`encodeURIComponent()` JavaScript Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
+- [`Number.prototype.toFixed()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)
 
 ---

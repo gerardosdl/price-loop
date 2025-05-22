@@ -4,17 +4,19 @@
 <section id="show-pg">
   <article>
     <p><strong><%= item.name %></strong></p>
-    <p>Description: <%= item.description %></p>
+    <p>Description: <br> <%- item.description.replaceAll('\n', '<br>') %></p>
     <p>Added by: <%= user.name %></p>
     <p>Added on: <%= item.createdAt.toLocaleDateString() %></p>
 
     <p>Category: <%= item.category %></p>
     <p>Location: <%= item.location %></p>
     <% if (item.user._id.equals(user._id)) { %>
-      <a href="/items/<%= item._id %>/edit">Edit item</a>
-       <form action="/items/<%=item._id %>?_method=DELETE" method="POST">
-         <button type="submit">🗑️</button>
-      </form>
+      <div class="center">
+        <a href="/items/<%= item._id %>/edit">Edit item</a>
+        <form action="/items/<%=item._id %>?_method=DELETE" method="POST">
+          <button type="submit" class="emoji-button"><span class="emoji">🗑️</span></button>
+        </form>
+      </div>
       <% } %>
     </article>
    
@@ -22,11 +24,11 @@
       <p><strong>Tracked By: </strong></p>
         <% if (isTracked) { %>
            <form action="/items/<%= item._id %>/trackings?_method=DELETE" method="POST">
-             <button type="submit">★</button>
+             <button type="submit" class="emoji-button"><span class="emoji">🌟</span></button>
           </form>
           <% } else if (user) { %>
              <form action="/items/<%= item._id %>/trackings" method="POST">
-               <button type="submit">☆</button>
+               <button type="submit" class="emoji-button"><span class="emoji">⭕️</span></button>
             </form>
             <% } %>
       <% if (item.trackedBy.length) { %>
@@ -54,14 +56,14 @@
     <ul>
       <% item.prices.forEach((price) =>{ %>
         <li>
-          <p>Price: $<%= price.price %></p>
+          <p>Price: $<%= price.price.toFixed(2) %></p>
           <p>Store: <%= price.store %></p>
           <p>Note: <br> <%- price.note.replaceAll('\n', '<br>') %></p>
           <p>Added by: <%= price.user.name %></p>
           <p>Added on: <%= price.createdAt.toLocaleDateString() %></p>
           <% if (price.user._id.equals(user._id)) { %>
             <form action="/prices/<%= price._id %>?_method=DELETE" method="POST">
-              <button type="submit">🗑️</button>
+              <button type="submit" class="emoji-button"><span class="emoji">🗑️</span></button>
             </form>
           <% } %>
         </li>
