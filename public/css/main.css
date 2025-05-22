@@ -8,6 +8,7 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  margin: 2rem auto;
 }
 
 body {
@@ -113,4 +114,20 @@ p {
 .list-group-item.active a {
   color: white;
   text-decoration: none;
+}
+
+th a {
+  display: inline-block;
+  margin: 0 4 px;
+  text-decoration: none;
+}
+
+th {
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+h1, h2, img {
+  margin-bottom: 3rem;
 }
