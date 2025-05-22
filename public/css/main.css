@@ -68,7 +68,7 @@ main {
 form {
   display: grid;
   grid-template-columns: auto auto;
-  gap: 2vmin;
+  gap: 1.5rem;
 }
 
 form * {
@@ -81,10 +81,16 @@ input,
 textarea,
 select {
   border: 0.3vmin solid black;
+  font-size: 1rem;
+}
+
+label {
+  font-size: 1rem;
 }
 
 form button[type='submit'] {
   grid-column: span 2;
+  font-size: 1rem;
 }
 
 button:hover {
