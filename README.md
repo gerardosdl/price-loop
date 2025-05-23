@@ -38,8 +38,8 @@ Price Loop is a web app that lets users add items and track prices across stores
 
 ## Getting Started
 
-- [View Project Planning Docs](https://)
-- [Launch the Live App](https://)
+- [View Project Planning Docs](https://trello.com/b/ZyGjVWcy)
+- [Launch the Live App](https://https://price-loop-c6ce75e11708.herokuapp.com/)
 
 ---
 

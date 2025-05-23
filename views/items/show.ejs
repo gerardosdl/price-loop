@@ -5,7 +5,7 @@
   <article>
     <p><strong><%= item.name %></strong></p>
     <p>Description: <br> <%- item.description.replaceAll('\n', '<br>') %></p>
-    <p>Added by: <%= user.name %></p>
+    <p>Added by: <%= item.user.name %></p>
     <p>Added on: <%= item.createdAt.toLocaleDateString() %></p>
 
     <p>Category: <%= item.category %></p>
