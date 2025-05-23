@@ -19,7 +19,7 @@ Price Loop is a web app that lets users add items and track prices across stores
   ![Screenshot of Add Item form](https://i.imgur.com/wagT8sc.png)
 
 - **Edit Item**  
-  ![Screenshot of Edit form](https://i.imgur.com/Wh5TvML.png)
+  ![Screenshot of Edit form](https://i.imgur.com/4v7Jwhd.png)
 
 - **My Tracked Items**  
   ![Screenshot of tracked items view](https://i.imgur.com/81p7GK1.png)
