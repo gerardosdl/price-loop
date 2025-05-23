@@ -41,7 +41,7 @@ const itemSchema = new Schema({
   },
   prices: {
     type: [priceSchema],
-    required: true,
+    required: false,
   },
   user: {
     type: Schema.Types.ObjectId,

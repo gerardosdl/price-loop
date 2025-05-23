@@ -32,7 +32,7 @@ app.use(methodOverride("_method"));
 app.use(morgan('dev'));
 
 // Sessions are how the server "remembers" which
-// user the curren request is from
+// user the current request is from
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,

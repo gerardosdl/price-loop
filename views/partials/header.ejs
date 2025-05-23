@@ -15,13 +15,22 @@
 <body>
   <nav>
     <a href="/">🏠</a>
-    <div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </label>
+
+    <div class="nav-links">
       <a href="/items">ALL ITEMS</a>
+
       <% if (user) { %>
         <a href="/trackings">MY TRACKED ITEMS</a>
         <a href="/items/new">ADD ITEM</a>
         <a href="/auth/sign-out">SIGN OUT</a>
         <span><%= user.name %></span>
+        
       <% } else { %>
         <a href="/auth/sign-up">SIGN UP</a>
         <a href="/auth/sign-in">SIGN IN</a>

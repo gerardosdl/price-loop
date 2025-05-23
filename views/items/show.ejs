@@ -10,48 +10,60 @@
 
     <p>Category: <%= item.category %></p>
     <p>Location: <%= item.location %></p>
+
     <% if (item.user._id.equals(user._id)) { %>
       <div class="center">
         <a href="/items/<%= item._id %>/edit">Edit item</a>
         <form action="/items/<%=item._id %>?_method=DELETE" method="POST">
-          <button type="submit" class="emoji-button"><span class="emoji">🗑️</span></button>
+          <button type="submit" class="emoji-button">
+            <span class="emoji">🗑️</span>
+          </button>
         </form>
       </div>
-      <% } %>
-    </article>
+    <% } %>
+  </article>
    
-    <article>
-      <p><strong>Tracked By: </strong></p>
-        <% if (isTracked) { %>
-           <form action="/items/<%= item._id %>/trackings?_method=DELETE" method="POST">
-             <button type="submit" class="emoji-button"><span class="emoji">🌟</span></button>
-          </form>
-          <% } else if (user) { %>
-             <form action="/items/<%= item._id %>/trackings" method="POST">
-               <button type="submit" class="emoji-button"><span class="emoji">⭕️</span></button>
-            </form>
-            <% } %>
-      <% if (item.trackedBy.length) { %>
-        <ul>
-          <% item.trackedBy.forEach((user) => { %>
-            <li><%= user.name %></li>
-          <% }) %>
-        </ul>
-      <% } else { %>
-        <p>This item is not tracked yet</p>
-      <% } %>
+  <article>
+    <p><strong>Tracked By: </strong></p>
+
+    <% if (isTracked) { %>
+      <form action="/items/<%= item._id %>/trackings?_method=DELETE" method="POST">
+        <button type="submit" class="emoji-button">
+          <span class="emoji">🌟</span>
+        </button>
+      </form>
+    <% } else if (user) { %>
+      <form action="/items/<%= item._id %>/trackings" method="POST">
+        <button type="submit" class="emoji-button">
+          <span class="emoji">⭕️</span>
+        </button>
+      </form>
+    <% } %>
+
+    <% if (item.trackedBy.length) { %>
+      <ul>
+        <% item.trackedBy.forEach((user) => { %>
+          <li><%= user.name %></li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>This item is not tracked yet</p>
+    <% } %>
   </article>
   
   <article>  
   <p><strong>Prices</strong></p>
     <form action="/items/<%= item._id %>/prices" method="POST">
       <label for="price">Price</label>
-    <input type="number" id="price" name="price" placeholder="0.00" step="0.01" min="0" max= "10000000" required>
+      <input type="number" id="price" name="price" placeholder="0.00" step="0.01" min="0" max= "10000000" required>
+     
       <label for="store">Store</label>
       <input type="text" id="store" name="store" required>
+      
       <label for="note">Note</label>
       <textarea id="note" name="note" required></textarea>
-      <button type="submit">Add Price</button>
+      
+      <button type="submit">Add Price➡️</button>
     </form>
     <ul>
       <% item.prices.forEach((price) =>{ %>
@@ -61,9 +73,12 @@
           <p>Note: <br> <%- price.note.replaceAll('\n', '<br>') %></p>
           <p>Added by: <%= price.user.name %></p>
           <p>Added on: <%= price.createdAt.toLocaleDateString() %></p>
+          
           <% if (price.user._id.equals(user._id)) { %>
             <form action="/prices/<%= price._id %>?_method=DELETE" method="POST">
-              <button type="submit" class="emoji-button"><span class="emoji">🗑️</span></button>
+              <button type="submit" class="emoji-button">
+                <span class="emoji">🗑️</span>
+              </button>
             </form>
           <% } %>
         </li>

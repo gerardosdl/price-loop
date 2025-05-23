@@ -8,7 +8,7 @@ const ensureLoggedIn = require('../middleware/ensure-logged-in');
 // This is how we can more easily protect ALL routes for this router
 router.use(ensureLoggedIn);
 
-// ALL paths start with '/
+// ALL paths start with '/'
 
 router.post('/items/:id/prices', async (req, res) => {
   try {
@@ -20,8 +20,7 @@ router.post('/items/:id/prices', async (req, res) => {
     res.redirect(`/items/${req.params.id}`);
   }catch (err) {
     console.log(err);
-    res.redirect(`/items/${req.params.id}`)
-// TODO check for missing references
+    res.redirect(`/items/${req.params.id}`);
   }
 });
 
